@@ -1,0 +1,70 @@
+<script>
+
+    
+
+    //---------------------------- btn click event for watchman approval AJAX------------------------------------
+
+    $("#watchmanidAJAX").on("click",".btnforwatchmanapproval",function (){
+
+        let id = $(this).attr('data-sid');
+        output=0;
+                   
+        let csr = $("input[name='csrfmiddlewaretoken']").val()
+
+        Wdata = {
+            id : id,
+            csrfmiddlewaretoken : csr
+        }
+        $.ajax(
+            {
+                url : "{% url 'watchman-approval-ajax-page' %}",
+                method: "POST",
+                data : Wdata,
+                success : function(response)
+                {
+                    // url = "{% url 'watchman-approval-ajax-page' %}"
+                    // window.location.assign(url);
+
+                    // x = response.context.wid;
+                    console.log(response);
+                    console.log(response.context.uid);
+
+                    // x = response.context.wid;
+                    x = response.context.uid;
+
+                    if (x.role=="watchman"){
+                        for(i = 0 ; i <x.length;i++)
+                        {
+                            output+="<td><span class='badge badge-success' id='approval12'>" + x[i].is_verified + "</span></td>"; 
+                        }
+                        $("#status").html(output);
+                    }
+                    else{
+                        }
+
+
+                    // if x.role== "watchman":
+                    //     for(i = 0 ; i <x.length;i++)
+                    //     {
+                    //         output+="<td><span class='badge badge-success' id='approval12'>" + x[i].is_verified + "</span></td>"; 
+                    //     }
+                    //     $("#status").html(output);
+                    // else:
+                    //     pass
+                    
+                    // $("#watchmanidAJAX")[1].reset();
+                    
+
+                    // {{i.user_id.is_verified}}
+                        // url = "{% url 'watchman-list-approval-page' %}"
+                        // window.location.assign(url);
+                    console.log("--------->success = ",response);
+                    console.log("--------data",response.context.wid);
+                }
+            
+            }
+            
+        )
+    });
+
+</script>

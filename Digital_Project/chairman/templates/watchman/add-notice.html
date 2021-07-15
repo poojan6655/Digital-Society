@@ -1,0 +1,219 @@
+{% extends 'watchman\base-watchman.html'%}
+{% load static %}   
+
+{% block title %} AddNotice -Digital Society({{context.cid.fname}}) {% endblock %}
+
+{% block link %} 
+<link rel="stylesheet" href="{% static 'chairman\assets\plugins\bootstrap\css\bootstrap.min.css' %}">
+                    <!-- ..\assets\plugins\bootstrap\css\bootstrap.min.css -->
+                                <link rel="stylesheet" href="{% static 'chairman\assets\plugins\dropzone\dropzone.css' %}">
+    <link rel="stylesheet" href="{% static 'chairman\assets\plugins\bootstrap-select\css\bootstrap-select.css' %}">
+                <!-- Custom Css -->
+        <link rel="stylesheet" href="{% static 'chairman\assets\css\main.css' %}">
+                <link rel="stylesheet" href="{% static 'chairman\assets\css\color_skins.css' %}">
+{% endblock %}
+{% block Leftbar %}  
+<ul class="list">
+    <li>
+        <div class="user-info">
+            <div class="image"><a href="{% url 'watchman-my-profile-page' %}"><img src="{{context.cid.profile_pic.url}}" alt="User"></a></div>
+            <div class="detail">
+                <h4>{{context.cid.fname}}</h4>
+                <small>Neurologist</small>                        
+            </div>
+        </div>
+    </li>
+    <!-- <li class="header"></li> -->
+    
+    <li class=""><a href="{% url 'chairmanpage' %}"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
+    <li class=""><a href="{% url 'watchman-my-profile-page' %}"><i class="zmdi zmdi-calendar-check"></i><span>My Profile</span></a></li> 
+    <li class=""><a href="{% url 'my-society-page' %}"><i class="zmdi zmdi-calendar-check"></i><span>My Society</span></a></li>
+    <li class=""><a href="{% url 'calendar-page' %}"><i class="zmdi zmdi-calendar-check"></i><span>Calendar & Event</span></a></li> 
+   
+    
+    <!-- <li class=""><a href="..\appointment\book-appointment.html"><i class="zmdi zmdi-calendar-check"></i><span>Timeline</span></a></li> -->
+    <li class="">
+        <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-calendar-check"></i><span>Events</span></a>
+        <ul class="ml-menu">
+            <!-- <li class=""><a href="{% url 'add-post-page' %}">Add Events</a></li> -->
+            <li class=""><a href="{% url 'view-post-page' %}">View All Events</a></li>                       
+            <!-- <li class=""><a href="..\doctor\profile.html">Doctor Profile</a></li>
+            <li class=""><a href="..\doctor\events.html">Doctor Schedule</a></li> -->
+        </ul>
+    </li>
+    <li class="active open">
+        <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-account-add"></i><span>Notices</span></a>
+        <ul class="ml-menu">
+            <li class="active open"><a href="{% url 'add-notice-page' %}">Add Notice</a></li>
+            <li class=""><a href="{% url 'view-notice-page' %}">View Notice</a></li>                       
+            <!-- <li class=""><a href="..\doctor\profile.html">Doctor Profile</a></li>
+            <li class=""><a href="..\doctor\events.html">Doctor Schedule</a></li> -->
+        </ul>
+    </li>
+    <li class="">
+        <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-account-o"></i><span>Society Members</span></a>
+        <ul class="ml-menu">
+            <!-- <li class=""><a href="{% url 'add-member-page' %}">Add Members</a></li> -->
+            <li class=""><a href="{% url 'member-list-page' %}">All Members</a></li>
+            <!-- <li class=""><a href="..\patients\patients-profile.html">Members Profile</a></li> -->
+            <!-- <li class=""><a href="..\patients\invoice.html">Invoice</a></li> -->
+        </ul>
+    </li>
+    <li class="">
+        <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-label-alt"></i><span>Gallery</span></a>
+        <ul class="ml-menu">
+            <li class=""><a href="{% url 'All-images-collection-page' %}">Images</a></li>
+            <li class=""><a href="{% url 'All-video-collection-page' %}">Video</a></li>
+          
+</ul>
+        {% endblock %}
+
+        
+{% block content %}
+
+
+        <!-- Right Sidebar -->
+       <!-- Chat-launcher -->
+<div class="chat-launcher"></div>
+<div class="chat-wrapper">
+    <div class="card">
+        <div class="header">
+            <ul class="list-unstyled team-info margin-0">
+                <li class="m-r-15"><h2>Dr. Team</h2></li>
+                <li>
+                    <img src="..\assets\images\xs\avatar2.jpg" alt="Avatar">
+                </li>
+                <li>
+                    <img src="..\assets\images\xs\avatar3.jpg" alt="Avatar">
+                </li>
+                <li>
+                    <img src="..\assets\images\xs\avatar4.jpg" alt="Avatar">
+                </li>
+                <li>
+                    <img src="..\assets\images\xs\avatar6.jpg" alt="Avatar">
+                </li>
+                <li>
+                    <a href="javascript:void(0);" title="Add Member"><i class="zmdi zmdi-plus-circle"></i></a>
+                </li>
+            </ul>                       
+        </div>
+        <div class="body">
+            <div class="chat-widget">
+            <ul class="chat-scroll-list clearfix">
+                <li class="left float-left">
+                    <img src="..\assets\images\xs\avatar3.jpg" class="rounded-circle" alt="">
+                    <div class="chat-info">
+                        <a class="name" href="#">Alexander</a>
+                        <span class="datetime">6:12</span>                            
+                        <span class="message">Hello, John </span>
+                    </div>
+                </li>
+                <li class="right">
+                    <div class="chat-info"><span class="datetime">6:15</span> <span class="message">Hi, Alexander<br> How are you!</span> </div>
+                </li>
+                <li class="right">
+                    <div class="chat-info"><span class="datetime">6:16</span> <span class="message">There are many variations of passages of Lorem Ipsum available</span> </div>
+                </li>
+                <li class="left float-left"> <img src="..\assets\images\xs\avatar2.jpg" class="rounded-circle" alt="">
+                    <div class="chat-info"> <a class="name" href="#">Elizabeth</a> <span class="datetime">6:25</span> <span class="message">Hi, Alexander,<br> John <br> What are you doing?</span> </div>
+                </li>
+                <li class="left float-left"> <img src="..\assets\images\xs\avatar1.jpg" class="rounded-circle" alt="">
+                    <div class="chat-info"> <a class="name" href="#">Michael</a> <span class="datetime">6:28</span> <span class="message">I would love to join the team.</span> </div>
+                </li>
+                    <li class="right">
+                    <div class="chat-info"><span class="datetime">7:02</span> <span class="message">Hello, <br>Michael</span> </div>
+                </li>
+            </ul>
+            </div>
+            <div class="input-group p-t-15">
+                <input type="text" class="form-control" placeholder="Enter text here...">
+                <span class="input-group-addon">
+                    <i class="zmdi zmdi-mail-send"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>       
+ <section class="content home">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-12">
+                        <h2>Add Notice <small class="text-muted">Welcome</small></h2>
+                    </div>            
+                    <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                        
+                                                    <button class="btn btn-white btn-icon btn-round d-none d-md-inline-block float-right m-l-10" type="button">
+                                <i class="zmdi zmdi-plus"></i>
+                            </button>
+                        
+                        
+                        <ul class="breadcrumb float-md-right">
+                            <li class="breadcrumb-item"><a href="{% url 'chairmanpage' %}"><i class="zmdi zmdi-home"></i> Oreo</a></li>
+                            <li class="breadcrumb-item">Notice</li>
+                            <li class="breadcrumb-item active">Add Notice</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">                
+                
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="card">
+                <div class="header">
+                    <h2><strong>Basic</strong> Information <small>Description text here...</small> </h2>
+                    <ul class="header-dropdown">
+                        <li class="remove">
+                            <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <form action="{% url 'view-notice-page' %}" method="POST">
+                    {% csrf_token %}
+                <div class="body">
+                    <div class="row clearfix">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="NoticeFromHtml" placeholder="Title">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <textarea rows="2" type="text" class="form-control" name="DescriptionFromHtml" placeholder="Type description Here....">
+                                </textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-round">Submit</button>
+                            <button type="reset" class="btn btn-default btn-round btn-simple">Cancel</button>
+                        </div>
+
+                    </div>                        
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</section>
+                <!-- Scripts -->
+                <script src="{% static 'chairman\assets\bundles\libscripts.bundle.js' %}"></script>    
+        <script src="{% static 'chairman\assets\bundles\vendorscripts.bundle.js' %}"></script>
+
+        <script src="{% static 'chairman\assets\bundles\mainscripts.bundle.js' %}"></script>
+                                <script src="{% static 'chairman\assets\plugins\dropzone\dropzone.js' %}"></script>
+				<!--Start of Tawk.to Script-->
+        <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/59f5afbbbb0c3f433d4c5c4c/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+        </script>
+        <!--End of Tawk.to Script-->
+    </body>
+</html>
+
+{% endblock %}

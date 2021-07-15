@@ -1,0 +1,441 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="csrf-token" content="iL8hUXsdXy71MbOZjq4fWUv4KGPZnJ7k17P7RClL">
+        <link rel="icon" href="https://thememakker.com/templates/oreo/hospital/laravel/public/favicon.ico" type="image/x-icon"> <!-- Favicon-->
+        <title>Page Blank - Oero Laravel</title>
+        <meta name="description" content="Oero Laravel">
+        <meta name="author" content="Oero Laravel">
+                
+                
+                    <link rel="stylesheet" href="{% static 'chairman\assets\plugins\bootstrap\css\bootstrap.min.css' %}">
+                        <!-- Custom Css -->
+        <link rel="stylesheet" href="{% static 'chairman\assets\css\main.css' %}">
+                <link rel="stylesheet" href="{% static 'chairman\assets\css\color_skins.css' %}">
+            </head>
+        <body class="theme-cyan">
+        <!-- Page Loader -->
+        <div class="page-loader-wrapper">
+            <div class="loader">
+                <div class="m-t-30"><img class="zmdi-hc-spin" src="{% static 'chairman\assets\images\logo.svg' %}" width="48" height="48" alt="Oreo"></div>
+                <p>Please wait...</p>        
+            </div>
+        </div>
+        <!-- Overlay For Sidebars -->
+        <div class="overlay"></div>
+        <nav class="navbar p-l-5 p-r-5">
+        <ul class="nav navbar-nav navbar-left">
+        <li>
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="#"><img src="{{context.cid.profile_pic.url}}" width="30"><span class="m-l-10">{{context.cid.fname}} - Digital Society</span></a>
+            </div>
+        </li>
+        
+        
+        <li class="d-none d-md-inline-block">
+            <div class="input-group">                
+                <input type="text" class="form-control" placeholder="Search...">
+                <span class="input-group-addon">
+                    <i class="zmdi zmdi-search"></i>
+                </span>
+            </div>
+        </li>        
+        <li class="float-right">
+            <a href="{% url 'logout-page' %}" class="mega-menu" data-close="true"><i class="zmdi zmdi-power"></i></a>
+            <!-- <a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="zmdi zmdi-settings zmdi-hc-spin"></i></a> -->
+        </li>
+        </ul>
+        </nav>        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+        <ul class="nav nav-tabs">
+        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#dashboard"><i class="zmdi zmdi-home m-r-5"></i>{{context.cid.fname}}</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#user">Docter</a></li>
+        </ul>
+        <div class="tab-content">
+        <div class="tab-pane stretchRight active" id="dashboard">
+            <div class="menu">
+                <ul class="list">
+                    <li>
+                        <div class="user-info">
+                            <div class="image"><a href="{% url 'my-profile-page' %}"><img src="{{context.cid.profile_pic.url}}" alt="User"></a></div>
+                            <div class="detail">
+                                <h4>{{context.cid.fname}}</h4>
+                                <small>Neurologist</small>                        
+                            </div>
+                        </div>
+                    </li>
+                    <!-- <li class="header"></li> -->
+                    
+                    <li class=""><a href="{% url 'chairmanpage' %}"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
+                    <li class=""><a href="{% url 'my-profile-page' %}"><i class="zmdi zmdi-calendar-check"></i><span>My Profile</span></a></li> 
+                    <li class=""><a href="{% url 'my-society-page' %}"><i class="zmdi zmdi-calendar-check"></i><span>My Society</span></a></li>
+                    <li class=""><a href="{% url 'calendar-page' %}"><i class="zmdi zmdi-calendar-check"></i><span>Calendar & Event</span></a></li> 
+                   
+                    
+                    <!-- <li class=""><a href="..\appointment\book-appointment.html"><i class="zmdi zmdi-calendar-check"></i><span>Timeline</span></a></li> -->
+                    <li class="">
+                        <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-calendar-check"></i><span>Events</span></a>
+                        <ul class="ml-menu">
+                            <li class=""><a href="{% url 'add-post-page' %}">Add Events</a></li>
+                            <li class=""><a href="{% url 'view-post-page' %}">View All Events</a></li>                       
+                            <!-- <li class=""><a href="..\doctor\profile.html">Doctor Profile</a></li>
+                            <li class=""><a href="..\doctor\events.html">Doctor Schedule</a></li> -->
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-account-add"></i><span>Notices</span></a>
+                        <ul class="ml-menu">
+                            <li class=""><a href="{% url 'add-notice-page' %}">Add Notice</a></li>
+                            <li class=""><a href="{% url 'view-notice-page' %}">View Notice</a></li>                       
+                            <!-- <li class=""><a href="..\doctor\profile.html">Doctor Profile</a></li>
+                            <li class=""><a href="..\doctor\events.html">Doctor Schedule</a></li> -->
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-account-o"></i><span>Society Members</span></a>
+                        <ul class="ml-menu">
+                            <li class=""><a href="{% url 'add-member-page' %}">Add Members</a></li>
+                            <li class=""><a href="{% url 'member-list-page' %}">All Members</a></li>
+                            <!-- <li class=""><a href="..\patients\patients-profile.html">Members Profile</a></li> -->
+                            <!-- <li class=""><a href="..\patients\invoice.html">Invoice</a></li> -->
+                        </ul>
+                    </li>
+                    <li class="active open">
+                        <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-balance-wallet"></i><span>Payments</span></a>
+                        <ul class="ml-menu">
+                            <li class=""><a href="..\payment\all-payment.html">All Payments</a></li>
+                            <li class=""><a href="{% url 'payment-pay-page' %}">Add Payment</a></li>
+                            <li class=""><a href="..\patients\invoice.html">Invoice</a></li>
+                        </ul>
+                    </li>
+                    <!-- <li class="">
+                        <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-label-alt"></i><span>Departments</span></a>
+                        <ul class="ml-menu">
+                            <li class=""><a href="..\departments\add-department.html">Add</a></li>
+                            <li class=""><a href="..\departments\all-departments.html">All Departments</a></li>
+                            <li><a href="javascript:void(0);">Cardiology</a></li>
+                            <li><a href="javascript:void(0);">Pulmonology</a></li>
+                            <li><a href="javascript:void(0);">Gynecology</a></li>
+                            <li><a href="javascript:void(0);">Neurology</a></li>
+                            <li><a href="javascript:void(0);">Urology</a></li>
+                            <li><a href="javascript:void(0);">Gastrology</a></li>
+                            <li><a href="javascript:void(0);">Pediatrician</a></li>
+                            <li><a href="javascript:void(0);">Laboratory</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-lock"></i><span>Authentication</span></a>
+                        <ul class="ml-menu">
+                            <li><a href="..\authentication\login.html">Sign In</a></li>
+                            <li><a href="..\authentication\register.html">Sign Up</a></li>
+                            <li><a href="..\authentication\forgot-password.html">Forgot Password</a></li>
+                            <li><a href="..\authentication\page404.html">Page 404</a></li>
+                            <li><a href="..\authentication\page500.html">Page 500</a></li>
+                            <li><a href="..\authentication\page-offline.html">Page Offline</a></li>
+                            <li><a href="..\authentication\lockscreen.html">Locked Screen</a></li>
+                        </ul>
+                    </li> -->
+                    <li class=""><a href="{% url 'watchman-list-approval-page' %}"><i class="zmdi zmdi-calendar-check"></i><span>Add Watchman</span></a></li>
+                    <!-- <li class="header">EXTRA COMPONENTS</li>
+                    <li class="">
+                        <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-blogger"></i><span>Blog</span></a>
+                        <ul class="ml-menu">
+                            <li class=""><a href="..\blog\dashboard.html">Dashboard</a></li>
+                            <li class=""><a href="..\blog\new-post.html">New Post</a></li>
+                            <li class=""><a href="..\blog\list.html">Blog List</a></li>
+                            <li class=""><a href="..\blog\grid.html">Blog Grid</a></li>
+                            <li class=""><a href="..\blog\detail.html">Blog Detail</a></li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-folder"></i><span>File Manager</span></a>
+                        <ul class="ml-menu">
+                            <li class=""><a href="..\file-manager\dashboard.html">All File</a></li>
+                            <li class=""><a href="..\file-manager\documents.html">Documents</a></li>
+                            <li class=""><a href="..\file-manager\media.html">Media</a></li>
+                            <li class=""><a href="..\file-manager\image.html">Images</a></li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-apps"></i><span>App</span></a>
+                        <ul class="ml-menu">
+                            <li class=""><a href="..\app\inbox.html">Inbox</a></li>
+                            <li class=""><a href="..\app\chat.html">Chat</a></li>
+                            <li class=""><a href="..\app\contact-list.html">Contact list</a></li>
+                        </ul>
+                    </li>                    
+                    <li class="">
+                        <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-delicious"></i><span>Widgets</span></a>
+                        <ul class="ml-menu">
+                            <li class=""><a href="..\widgets\apps.html">Apps Widgetse</a></li>
+                            <li class=""><a href="..\widgets\data.html">Data Widgetse</a></li>
+                        </ul>
+                    </li>                    
+                    <li class="">
+                        <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-copy"></i><span>Sample Pages</span></a>
+                        <ul class="ml-menu">
+                            <li class=""><a href="..\pages\blank-page.html">Blank Page</a></li>
+                            <li class=""><a href="..\pages\rtl.html">RTL Support</a></li>
+                            <li class=""><a href="..\pages\image-gallery.html">Image Gallery</a></li>
+                            <li class=""><a href="..\pages\profile.html">Profile</a></li>
+                            <li class=""><a href="..\pages\timeline.html">Timeline</a></li>                            
+                            <li class=""><a href="..\pages\invoices.html">Invoices</a></li>
+                            <li class=""><a href="..\pages\search-results.html">Search Results</a></li>
+                        </ul>
+                    </li> -->
+                    <!-- <li class="">
+                        <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-swap-alt"></i><span>User Interface (UI)</span></a>
+                        <ul class="ml-menu">
+                            <li class=""><a href="..\ui\ui-kit.html">UI KIT</a></li>
+                            <li class=""><a href="..\ui\alerts.html">Alerts</a></li>
+                            <li class=""><a href="..\ui\collapse.html">Collapse</a></li>
+                            <li class=""><a href="..\ui\colors.html">Colors</a></li>
+                            <li class=""><a href="..\ui\dialogs.html">Dialogs</a></li>
+                            <li class=""><a href="..\ui\icons.html">Icons</a></li>
+                            <li class=""><a href="..\ui\list-group.html">List Group</a></li>
+                            <li class=""><a href="..\ui\media-object.html">Media Object</a></li>
+                            <li class=""><a href="..\ui\modals.html">Modals</a></li>
+                            <li class=""><a href="..\ui\notifications.html">Notifications</a></li>
+                            <li class=""><a href="..\ui\progressbars.html">Progress Bars</a></li>
+                            <li class=""><a href="..\ui\range-sliders.html">Range Sliders</a></li>
+                            <li class=""><a href="..\ui\sortable-nestable.html">Sortable Nestable</a></li>
+                            <li class=""><a href="..\ui\tabs.html">Tabs</a></li>
+                            <li class=""><a href="..\ui\waves.html">Waves</a></li>
+                        </ul>
+                    </li> -->
+                    <!-- <li class="header">Extra</li>
+                    <li>
+                        <div class="progress-container progress-primary m-t-10">
+                            <span class="progress-badge">Traffic this Month</span>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="width: 67%;">
+                                    <span class="progress-value">67%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="progress-container progress-info">
+                            <span class="progress-badge">Server Load</span>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100" style="width: 86%;">
+                                    <span class="progress-value">86%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+        <div class="tab-pane stretchLeft" id="user">
+            <div class="menu">
+                <ul class="list">
+                    <li>
+                        <div class="user-info m-b-20 p-b-15">
+                            <div class="image"><a href="..\doctor\profile.html"></a><img src="{{context.cid.profile_pic.url}}" /></a></div>
+                            <div class="detail">
+                                <h4>{{context.cid.fname}}</h4>
+                                <small>{{context.uid.email}}</small>                        
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <a title="facebook" href="#"><i class="zmdi zmdi-facebook"></i></a>
+                                    <a title="twitter" href="#"><i class="zmdi zmdi-twitter"></i></a>
+                                    <a title="instagram" href="#"><i class="zmdi zmdi-instagram"></i></a>
+                                </div>
+                                <div class="col-4 p-r-0">
+                                    <h5 class="m-b-5">18</h5>
+                                    <small>Exp</small>
+                                </div>
+                                <div class="col-4">
+                                    <h5 class="m-b-5">125</h5>
+                                    <small>Awards</small>
+                                </div>
+                                <div class="col-4 p-l-0">
+                                    <h5 class="m-b-5">148</h5>
+                                    <small>Clients</small>
+                                </div>                                
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <small class="text-muted">Location: </small>
+                        <p>795 Folsom Ave, Suite 600 San Francisco, CADGE 94107</p>
+                        <hr>
+                        <small class="text-muted">Email address: </small>
+                        <p>{{context.uid.email}}</p>
+                        <hr>
+                        <small class="text-muted">Phone: </small>
+                        <p>+91 {{context.cid.contactno}}</p>
+                        <hr>
+                        <small class="text-muted">Website: </small>
+                        <p>http://dr.charlotte.com/ </p>
+                        <hr>
+                        <ul class="list-unstyled">
+                            <li>
+                                <div>Colorectal Surgery</div>
+                                <div class="progress m-b-20">
+                                    <div class="progress-bar l-blue " role="progressbar" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100" style="width: 89%"> <span class="sr-only">62% Complete</span></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div>Endocrinology</div>
+                                <div class="progress m-b-20">
+                                    <div class="progress-bar l-green " role="progressbar" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100" style="width: 56%"> <span class="sr-only">87% Complete</span></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div>Dermatology</div>
+                                <div class="progress m-b-20">
+                                    <div class="progress-bar l-amber" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" style="width: 78%"> <span class="sr-only">32% Complete</span></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div>Neurophysiology</div>
+                                <div class="progress m-b-20">
+                                    <div class="progress-bar l-blush" role="progressbar" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100" style="width: 43%"> <span class="sr-only">56% Complete</span></div>
+                                </div>
+                            </li>
+                        </ul>                        
+                    </li>                    
+                </ul>
+            </div>
+        </div>
+        </div>    
+        </aside>
+        
+        
+        <!-- Right Sidebar -->
+
+ <!-- Chat-launcher -->
+<div class="chat-launcher"></div>
+<div class="chat-wrapper">
+    <div class="card">
+        <div class="header">
+            <ul class="list-unstyled team-info margin-0">
+                <li class="m-r-15"><h2>Dr. Team</h2></li>
+                <li>
+                    <img src="..\assets\images\xs\avatar2.jpg" alt="Avatar">
+                </li>
+                <li>
+                    <img src="..\assets\images\xs\avatar3.jpg" alt="Avatar">
+                </li>
+                <li>
+                    <img src="..\assets\images\xs\avatar4.jpg" alt="Avatar">
+                </li>
+                <li>
+                    <img src="..\assets\images\xs\avatar6.jpg" alt="Avatar">
+                </li>
+                <li>
+                    <a href="javascript:void(0);" title="Add Member"><i class="zmdi zmdi-plus-circle"></i></a>
+                </li>
+            </ul>                       
+        </div>
+        <div class="body">
+            <div class="chat-widget">
+            <ul class="chat-scroll-list clearfix">
+                <li class="left float-left">
+                    <img src="..\assets\images\xs\avatar3.jpg" class="rounded-circle" alt="">
+                    <div class="chat-info">
+                        <a class="name" href="#">Alexander</a>
+                        <span class="datetime">6:12</span>                            
+                        <span class="message">Hello, John </span>
+                    </div>
+                </li>
+                <li class="right">
+                    <div class="chat-info"><span class="datetime">6:15</span> <span class="message">Hi, Alexander<br> How are you!</span> </div>
+                </li>
+                <li class="right">
+                    <div class="chat-info"><span class="datetime">6:16</span> <span class="message">There are many variations of passages of Lorem Ipsum available</span> </div>
+                </li>
+                <li class="left float-left"> <img src="..\assets\images\xs\avatar2.jpg" class="rounded-circle" alt="">
+                    <div class="chat-info"> <a class="name" href="#">Elizabeth</a> <span class="datetime">6:25</span> <span class="message">Hi, Alexander,<br> John <br> What are you doing?</span> </div>
+                </li>
+                <li class="left float-left"> <img src="..\assets\images\xs\avatar1.jpg" class="rounded-circle" alt="">
+                    <div class="chat-info"> <a class="name" href="#">Michael</a> <span class="datetime">6:28</span> <span class="message">I would love to join the team.</span> </div>
+                </li>
+                    <li class="right">
+                    <div class="chat-info"><span class="datetime">7:02</span> <span class="message">Hello, <br>Michael</span> </div>
+                </li>
+            </ul>
+            </div>
+            <div class="input-group p-t-15">
+                <input type="text" class="form-control" placeholder="Enter text here...">
+                <span class="input-group-addon">
+                    <i class="zmdi zmdi-mail-send"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>        <section class="content home">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-12">
+                        <h2>Page Blank <small class="text-muted">Welcome to Oreo</small></h2>
+                    </div>            
+                    <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                        
+                        
+                        
+                        <ul class="breadcrumb float-md-right">
+                            <li class="breadcrumb-item"><a href="..\dashboard\index.html"><i class="zmdi zmdi-home"></i> Oreo</a></li>
+                                                            <li class="breadcrumb-item">Pages</li>
+                                                                                        <li class="breadcrumb-item active">Page Blank</li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">                
+                <div class="row clearfix">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="body">
+                <h4>Redirecting Page</h4>
+            </div>
+            <h1>Please do not refresh this page...</h1>
+            <form method="post" action="https://securegw-stage.paytm.in/order/process/" name="f1">
+                <table>
+                    <tbody>
+                        <input type="hidden" name="MID" value="{{ MID }}">
+                        <input type="hidden" name="WEBSITE" value="{{ WEBSITE }}">
+                        <input type="hidden" name="ORDER_ID" value="{{ ORDER_ID }}">
+                        <input type="hidden" name="CUST_ID" value="{{ CUST_ID }}">
+                        <input type="hidden" name="INDUSTRY_TYPE_ID" value="{{ INDUSTRY_TYPE_ID }}">
+                        <input type="hidden" name="CHANNEL_ID" value="{{ CHANNEL_ID }}">
+                        <input type="hidden" name="TXN_AMOUNT" value="{{ TXN_AMOUNT }}">
+                        <input type="hidden" name="CALLBACK_URL" value="{{ CALLBACK_URL }}">
+                        <input type="hidden" name="CHECKSUMHASH" value="{{ CHECKSUMHASH }}">
+                    </tbody>
+                </table>
+            <script type="text/javascript">
+                document.f1.submit();
+            </script>
+            </form>
+        </div>
+    </div>
+</div>
+            </div>
+        </section>
+                <!-- Scripts -->
+                <script src="{% static 'chairman\assets\bundles\libscripts.bundle.js' %}"></script>    
+        <script src="{% static 'chairman\assets\bundles\vendorscripts.bundle.js' %}"></script>
+
+        <script src="{% static 'chairman\assets\bundles\mainscripts.bundle.js' %}"></script>
+                		<!--Start of Tawk.to Script-->
+        <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/59f5afbbbb0c3f433d4c5c4c/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+        </script>
+        <!--End of Tawk.to Script-->
+    </body>
+</html>

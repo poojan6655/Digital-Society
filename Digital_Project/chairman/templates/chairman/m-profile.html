@@ -1,0 +1,592 @@
+{% extends 'chairman\base.html' %}
+{% load static %}   
+
+{% block title %}MemberProfile -Digital Society({{context.cid.fname}}){% endblock %}
+{% block link %} 
+<link rel="stylesheet" href="{% static 'chairman\assets\plugins\bootstrap\css\bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'chairman\assets\css\timeline.css' %}">
+<!-- Custom Css -->
+<link rel="stylesheet" href="{% static 'chairman\assets\css\main.css' %}">
+<link rel="stylesheet" href="{% static 'chairman\assets\css\color_skins.css' %}">
+{% endblock %}
+{% block Leftbar %}  
+        <ul class="list">
+            <li>
+                <div class="user-info">
+                    <div class="image"><a href="{% url 'my-profile-page' %}"><img src="{{context.cid.profile_pic.url}}" alt="User"></a></div>
+                    <div class="detail">
+                        <h4>{{context.cid.fname}}</h4>
+                        <small>{{context.cid.user_id.role}}</small>                        
+                    </div>
+                </div>
+            </li>
+            <!-- <li class="header"></li> -->
+            
+            <li class=""><a href="{% url 'chairmanpage' %}"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
+            <li class=""><a href="{% url 'my-profile-page' %}"><i class="zmdi zmdi-calendar-check"></i><span>My Profile</span></a></li> 
+            <li class=""><a href="{% url 'my-society-page' %}"><i class="zmdi zmdi-calendar-check"></i><span>My Society</span></a></li>
+            <li class=""><a href="{% url 'calendar-page' %}"><i class="zmdi zmdi-calendar-check"></i><span>Calendar & Event</span></a></li> 
+           
+            
+            <!-- <li class=""><a href="..\appointment\book-appointment.html"><i class="zmdi zmdi-calendar-check"></i><span>Timeline</span></a></li> -->
+            <li class="">
+                <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-calendar-check"></i><span>Events</span></a>
+                <ul class="ml-menu">
+                    <li class=""><a href="{% url 'add-post-page' %}">Add Events</a></li>
+                    <li class=""><a href="{% url 'view-post-page' %}">View All Events</a></li>                       
+                </ul>
+            </li>
+            <li class="">
+                <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-account-add"></i><span>Notices</span></a>
+                <ul class="ml-menu">
+                    <li class=""><a href="{% url 'add-notice-page' %}">Add Notice</a></li>
+                    <li class=""><a href="{% url 'view-notice-page' %}">View Notice</a></li>                       
+                </ul>
+            </li>
+            <li class="active open">
+                <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-account-o"></i><span>Society Members</span></a>
+                <ul class="ml-menu">
+                    <li class=""><a href="{% url 'add-member-page' %}">Add Members</a></li>
+                    <li class=""><a href="{% url 'add-family-member-page' %}">Add Family Member</a></li>
+                    <li class=""><a href="{% url 'member-list-page' %}">All Members</a></li>
+                    <li class="active open"><a href="#">Members Profile</a></li>
+                    <!-- <li class=""><a href="..\patients\invoice.html">Invoice</a></li> -->
+                </ul>
+            </li>
+            <li class="">
+                <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-label-alt"></i><span>Gallery</span></a>
+                <ul class="ml-menu">
+                    <li class=""><a href="{% url 'All-images-collection-page' %}">Images</a></li>
+                    <li class=""><a href="{% url 'All-video-collection-page' %}">Video</a></li>
+                </ul>
+            </li>
+            <li class="">
+                <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-balance-wallet"></i><span>Society Balance</span></a>
+                <ul class="ml-menu">
+                    <li class=""><a href="{% url 'add-balance-page' %}">Add Balance</a></li>
+                    <li class=""><a href="{% url 'view-balance-page' %}">view Balance</a></li>
+                    <li class=""><a href="{% url 'add-expense-page' %}">Add Expense</a></li>
+                    <!-- <li class=""><a href="..\patients\invoice.html">Invoice</a></li> -->
+                </ul>
+            </li>
+            <li class="">
+                <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-balance-wallet"></i><span>Maintenance</span></a>
+                <ul class="ml-menu">
+                    <li class=""><a href="{% url 'add-maintenance-page' %}">Add Maintenance</a></li>
+                    <li class=""><a href="{% url 'view-maintenance-page' %}">view Maintenance</a></li>
+                    <li class=""><a href="..\patients\invoice.html">Invoice</a></li>
+                </ul>
+            </li>
+            <li class="">
+                <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-balance-wallet"></i><span>Payments</span></a>
+                <ul class="ml-menu">
+                    <li class=""><a href="{% url 'all-payment-list-page' %}">All Payments</a></li>
+                    <li class=""><a href="{% url 'payment-pay-page' %}">Add Payment</a></li>
+                    <li class=""><a href="..\patients\invoice.html">Invoice</a></li>
+                </ul>
+            </li>
+            <li class=""><a href="{% url 'watchman-list-approval-page' %}"><i class="zmdi zmdi-calendar-check"></i><span>Add Watchman</span></a></li>
+            
+        </ul>
+        {% endblock %}
+{% block content %}
+
+<!-- ************************MAIN Containt******************************** -->
+
+
+        
+        <!-- Right Sidebar -->
+     
+ <!-- Chat-launcher -->
+<div class="chat-launcher"></div>
+<div class="chat-wrapper">
+    <div class="card">
+        <div class="header">
+            <ul class="list-unstyled team-info margin-0">
+                <li class="m-r-15"><h2>Dr. Team</h2></li>
+                <li>
+                    <img src="..\assets\images\xs\avatar2.jpg" alt="Avatar">
+                </li>
+                <li>
+                    <img src="..\assets\images\xs\avatar3.jpg" alt="Avatar">
+                </li>
+                <li>
+                    <img src="..\assets\images\xs\avatar4.jpg" alt="Avatar">
+                </li>
+                <li>
+                    <img src="..\assets\images\xs\avatar6.jpg" alt="Avatar">
+                </li>
+                <li>
+                    <a href="javascript:void(0);" title="Add Member"><i class="zmdi zmdi-plus-circle"></i></a>
+                </li>
+            </ul>                       
+        </div>
+        <div class="body">
+            <div class="chat-widget">
+            <ul class="chat-scroll-list clearfix">
+                <li class="left float-left">
+                    <img src="..\assets\images\xs\avatar3.jpg" class="rounded-circle" alt="">
+                    <div class="chat-info">
+                        <a class="name" href="#">Alexander</a>
+                        <span class="datetime">6:12</span>                            
+                        <span class="message">Hello, John </span>
+                    </div>
+                </li>
+                <li class="right">
+                    <div class="chat-info"><span class="datetime">6:15</span> <span class="message">Hi, Alexander<br> How are you!</span> </div>
+                </li>
+                <li class="right">
+                    <div class="chat-info"><span class="datetime">6:16</span> <span class="message">There are many variations of passages of Lorem Ipsum available</span> </div>
+                </li>
+                <li class="left float-left"> <img src="..\assets\images\xs\avatar2.jpg" class="rounded-circle" alt="">
+                    <div class="chat-info"> <a class="name" href="#">Elizabeth</a> <span class="datetime">6:25</span> <span class="message">Hi, Alexander,<br> John <br> What are you doing?</span> </div>
+                </li>
+                <li class="left float-left"> <img src="..\assets\images\xs\avatar1.jpg" class="rounded-circle" alt="">
+                    <div class="chat-info"> <a class="name" href="#">Michael</a> <span class="datetime">6:28</span> <span class="message">I would love to join the team.</span> </div>
+                </li>
+                    <li class="right">
+                    <div class="chat-info"><span class="datetime">7:02</span> <span class="message">Hello, <br>Michael</span> </div>
+                </li>
+            </ul>
+            </div>
+            <div class="input-group p-t-15">
+                <input type="text" class="form-control" placeholder="Enter text here...">
+                <span class="input-group-addon">
+                    <i class="zmdi zmdi-mail-send"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>        <section class="content home">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-12">
+                        <h2>Profile <small class="text-muted">Welcome {{context.cid.fname}}</small></h2>
+                    </div>            
+                    <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                        
+                        
+                                                    <button class="btn btn-white btn-icon btn-round d-none d-md-inline-block float-right m-l-10" type="button">
+                                <i class="zmdi zmdi-edit"></i>
+                            </button>
+                        
+                        <ul class="breadcrumb float-md-right">
+                            <li class="breadcrumb-item"><a href="{% url 'chairmanpage' %}"><i class="zmdi zmdi-home"></i> Oreo</a></li>
+                                                            <li class="breadcrumb-item">Doctors</li>
+                                                                                        <li class="breadcrumb-item active">Profile</li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">                
+                
+    <div class="row clearfix profile-page">
+        <div class="col-lg-4 col-md-12">
+            <div class="card profile-header">
+                <div class="body text-center">
+                    <div class="profile-image"> <img src="{{context.mid.profile_pic.url}}" alt="helo"> </div>
+                    <div>
+                        <h4 class="m-b-0"><strong>{{context.mid.fname}}</strong>{{context.mid.lname}}</h4>
+                        <span class="job_post">{{context.mid.m_id.job_profession}}</span>
+                        <p>{{context.mid.m_id.home_no}}<br> ,{{context.mid.m_id.address}}</p>
+                    </div>
+                            
+                    <div>
+                        <!-- <button class="btn btn-primary btn-round">Follow</button> -->
+                        
+                        
+                    </div>
+                    <p class="social-icon m-t-5 m-b-0">
+                        {% if e_msg %}
+                            <div class="alert alert-danger" role="alert">
+                            {{e_msg}}
+                            </div>
+                            {% endif %}
+                            {% if s_msg %}
+                            <div class="alert alert-success" role="alert">
+                            {{s_msg}}
+                            </div>
+                            {% endif %}
+                    </p>
+                </div>                    
+            </div>                               
+            <div class="card">
+                <div class="body">
+                    <div class="workingtime">
+                        <h6>Working Time</h6>
+                        <small class="text-muted">Tuesday</small>
+                        <p>06:00 AM - 07:00 AM</p>
+                        <hr>
+                        <small class="text-muted">Thursday</small>
+                        <p>06:00 AM - 07:00 AM</p>
+                        <hr>
+                    </div>
+                    <div class="reviews">
+                        <h6>Reviews</h6>
+                        <small class="text-muted">Staff</small>
+                        <p>
+                            <i class="zmdi zmdi-star"></i>
+                            <i class="zmdi zmdi-star"></i>
+                            <i class="zmdi zmdi-star"></i>
+                            <i class="zmdi zmdi-star-outline"></i>
+                            <i class="zmdi zmdi-star-outline"></i>
+                        </p>
+                        <hr>
+                        <small class="text-muted">Punctuality</small>
+                        <p>
+                            <i class="zmdi zmdi-star"></i>
+                            <i class="zmdi zmdi-star"></i>
+                            <i class="zmdi zmdi-star"></i>
+                            <i class="zmdi zmdi-star"></i>
+                            <i class="zmdi zmdi-star-outline"></i>
+                        </p>
+                        <hr>
+                        <small class="text-muted">Helpfulness</small>
+                        <p>
+                            <i class="zmdi zmdi-star"></i>
+                            <i class="zmdi zmdi-star"></i>
+                            <i class="zmdi zmdi-star"></i>
+                            <i class="zmdi zmdi-star"></i>
+                            <i class="zmdi zmdi-star"></i>
+                        </p>
+                        <hr>
+                        <small class="text-muted">Knowledge</small>
+                        <p>
+                            <i class="zmdi zmdi-star"></i>
+                            <i class="zmdi zmdi-star"></i>
+                            <i class="zmdi zmdi-star"></i>
+                            <i class="zmdi zmdi-star-outline"></i>
+                            <i class="zmdi zmdi-star-outline"></i>
+                        </p>
+                        <hr>
+                        <small class="text-muted">Cost</small>
+                        <p>
+                            <i class="zmdi zmdi-star"></i>
+                            <i class="zmdi zmdi-star"></i>
+                            <i class="zmdi zmdi-star-outline"></i>
+                            <i class="zmdi zmdi-star-outline"></i>
+                            <i class="zmdi zmdi-star-outline"></i>
+                        </p>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="card">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#Followers">Followers</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#friends">Friends</a></li>                        
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane body active" id="Followers">
+                        <ul class="right_chat list-unstyled">
+                            <li class="online">
+                                <a href="javascript:void(0);">
+                                    <div class="media">
+                                        <img class="media-object " src="..\assets\images\xs\avatar4.jpg" alt="">
+                                        <div class="media-body">
+                                            <span class="name">Chris Fox</span>
+                                            <span class="message">Designer, Blogger</span>
+                                            <span class="badge badge-outline status"></span>
+                                        </div>
+                                    </div>
+                                </a>                            
+                            </li>
+                            <li class="online">
+                                <a href="javascript:void(0);">
+                                    <div class="media">
+                                        <img class="media-object " src="..\assets\images\xs\avatar5.jpg" alt="">
+                                        <div class="media-body">
+                                            <span class="name">Joge Lucky</span>
+                                            <span class="message">Java Developer</span>
+                                            <span class="badge badge-outline status"></span>
+                                        </div>
+                                    </div>
+                                </a>                            
+                            </li>
+                            <li class="offline">
+                                <a href="javascript:void(0);">
+                                    <div class="media">
+                                        <img class="media-object " src="..\assets\images\xs\avatar2.jpg" alt="">
+                                        <div class="media-body">
+                                            <span class="name">Isabella</span>
+                                            <span class="message">CEO, Thememakker</span>
+                                            <span class="badge badge-outline status"></span>
+                                        </div>
+                                    </div>
+                                </a>                            
+                            </li>
+                            <li class="offline">
+                                <a href="javascript:void(0);">
+                                    <div class="media">
+                                        <img class="media-object " src="..\assets\images\xs\avatar1.jpg" alt="">
+                                        <div class="media-body">
+                                            <span class="name">Folisise Chosielie</span>
+                                            <span class="message">Art director, Movie Cut</span>
+                                            <span class="badge badge-outline status"></span>
+                                        </div>
+                                    </div>
+                                </a>                            
+                            </li>
+                            <li class="online">
+                                <a href="javascript:void(0);">
+                                    <div class="media">
+                                        <img class="media-object " src="..\assets\images\xs\avatar3.jpg" alt="">
+                                        <div class="media-body">
+                                            <span class="name">Alexander</span>
+                                            <span class="message">Writter, Mag Editor</span>
+                                            <span class="badge badge-outline status"></span>
+                                        </div>
+                                    </div>
+                                </a>                            
+                            </li>                        
+                        </ul>
+                    </div>
+                    <div class="tab-pane body" id="friends">
+                        <ul class="new_friend_list list-unstyled row">
+                            <li class="col-lg-4 col-md-2 col-sm-6 col-4">
+                                <a href="">
+                                    <img src="..\assets\images\sm\avatar1.jpg" class="img-thumbnail" alt="User Image">
+                                    <h6 class="users_name">Jackson</h6>
+                                    <small class="join_date">Today</small>
+                                </a>
+                            </li>
+                            <li class="col-lg-4 col-md-2 col-sm-6 col-4">
+                                <a href="">
+                                    <img src="..\assets\images\sm\avatar2.jpg" class="img-thumbnail" alt="User Image">
+                                    <h6 class="users_name">Aubrey</h6>
+                                    <small class="join_date">Yesterday</small>
+                                </a>
+                            </li>
+                            <li class="col-lg-4 col-md-2 col-sm-6 col-4">
+                                <a href="">
+                                    <img src="..\assets\images\sm\avatar3.jpg" class="img-thumbnail" alt="User Image">
+                                    <h6 class="users_name">Oliver</h6>
+                                    <small class="join_date">08 Nov</small>
+                                </a>
+                            </li>
+                            <li class="col-lg-4 col-md-2 col-sm-6 col-4">
+                                <a href="">
+                                    <img src="..\assets\images\sm\avatar4.jpg" class="img-thumbnail" alt="User Image">
+                                    <h6 class="users_name">Isabella</h6>
+                                    <small class="join_date">12 Dec</small>
+                                </a>
+                            </li>
+                            <li class="col-lg-4 col-md-2 col-sm-6 col-4">
+                                <a href="">
+                                    <img src="..\assets\images\sm\avatar1.jpg" class="img-thumbnail" alt="User Image">
+                                    <h6 class="users_name">Jacob</h6>
+                                    <small class="join_date">12 Dec</small>
+                                </a>
+                            </li>
+                            <li class="col-lg-4 col-md-2 col-sm-6 col-4">
+                                <a href="">
+                                    <img src="..\assets\images\sm\avatar5.jpg" class="img-thumbnail" alt="User Image">
+                                    <h6 class="users_name">Matthew</h6>
+                                    <small class="join_date">17 Dec</small>
+                                </a>
+                            </li>                            
+                        </ul>
+                    </div>                        
+                </div>
+            </div>                  -->
+        </div>
+        <div class="col-lg-8 col-md-12">
+            <div class="card">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Account">Account</a></li>                        
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane body active" id="about">
+                        <p>{{context.mid.fname}} is a Member of Our Society.</p>
+                        <h6>Qualifications</h6>
+                        <hr>
+                        <ul class="list-unstyled">
+                            <li>
+                                <p><strong>Email:</strong> {{context.mid.user_id.email}}</p>
+                            </li>
+                            <li>
+                                <p><strong>Mobile Number:</strong> {{context.mid.m_id.contactno}}</p>
+                            </li>
+                            <li>
+                                <p><strong>Job:</strong> {{context.mid.m_id.job_profession}}</p>
+                            </li>
+                            <li>
+                                <p><strong>Job Address:</strong> {{context.mid.m_id.job_address}}</p>
+                            </li>
+                            <li>
+                                <p><strong>Vehicle Members Have:</strong> {{context.mid.m_id.vehicle_no}}</p>
+                            </li>
+                            <li>
+                                <p><strong>Blood Group:</strong> {{context.mid.m_id.blood_group}}</p>
+                            </li>
+                            <li>
+                                <p><strong>family Members:</strong> {{context.mid.m_id.family_member}}</p>
+                            </li>
+                        </ul>
+                        <!-- <h6>Specialties</h6>
+                        <hr>
+                        <ul class="list-unstyled specialties">
+                            <li>Breast Surgery</li>
+                            <li>Colorectal Surgery</li>
+                            <li>Endocrinology</li>
+                            <li>Cardiology</li>
+                            <li>Cosmetic Dermatology</li>
+                            <li>Mole checks and monitoring</li>
+                            <li>Clinical Neurophysiology</li>
+                        </ul> -->
+                    </div>
+                    <div class="tab-pane body" id="Account">
+                        <form action="{% url 'chairman-member-profile-update-page' %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Email" name="EmailFromHtml" value="{{context.mid.user_id.email}}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Current Password" name="CurrentPasswordFromHtml" value="{{context.mid.user_id.password}}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="NewPasswordFromHtml" placeholder="New Password">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="ConfirmNewPasswordFromHtml" placeholder="Re-type New Password">
+                        </div>
+                        <!-- <button class="btn btn-info btn-round">Save Changes</button> -->
+                        <hr>
+                        <h3 style="text-align: center;">Personal Information</h3>
+                        <div class="row clearfix">
+                            
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="FNameFromHtml" value="{{context.mid.fname}}" placeholder="First Name">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="LNameFromHtml" value="{{context.mid.lname}}" placeholder="Last Name">
+                                </div>
+                            </div>   
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="JobFromHtml" value="{{context.mid.m_id.job_profession}}" placeholder="JOB-Profession">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input type="file" class="form-control" name="ProfilePicFromHtml">
+                                </div>
+                            </div>                                 
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="ContactNumberFromHtml" value="{{context.mid.m_id.contactno}}" placeholder="Contact Number">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" value="Your Role = {{context.mid.user_id.role}}" placeholder="Your Role" readonly>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="HouseNumberFromHtml" value="{{context.mid.m_id.home_no}}" placeholder="house Number" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group m-b-10">
+                                    <textarea rows="2" class="form-control no-resize"  placeholder="Address Line 1" readonly>{{context.mid.m_id.address}}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="checkbox">
+                                    <input id="procheck2" type="checkbox">
+                                    <label for="procheck2">New task notifications</label>
+                                </div>
+                                <div class="checkbox">
+                                    <input id="procheck3" type="checkbox">
+                                    <label for="procheck3">New friend request notifications</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary btn-round">Save Changes</button>
+                            </div>
+                        </div>
+                    </form>
+                    </div>                        
+                </div>
+            </div>
+            <!-- <div class="card">
+                <div class="header">
+                    <h2><strong>Recent</strong> Activity</h2>
+                    <ul class="header-dropdown">
+                        <li class="remove">
+                            <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="body user_activity">
+                    <div class="streamline b-accent">
+                        <div class="sl-item">
+                            <img class="user rounded-circle" src="..\assets\images\xs\avatar4.jpg" alt="">
+                            <div class="sl-content">
+                                <h5 class="m-b-0">Admin Birthday</h5>
+                                <small>Jan 21 <a href="javascript:void(0);" class="text-info">Sophia</a>.</small>
+                            </div>
+                        </div>
+                        <div class="sl-item">
+                            <img class="user rounded-circle" src="..\assets\images\xs\avatar5.jpg" alt="">
+                            <div class="sl-content">
+                                <h5 class="m-b-0">Add New Contact</h5>
+                                <small>30min ago <a href="javascript:void(0);">Alexander</a>.</small>
+                                <small><strong>P:</strong> +264-625-2323</small>
+                                <small><strong>E:</strong> maryamamiri@gmail.com</small>
+                            </div>
+                        </div>
+                        <div class="sl-item">
+                            <img class="user rounded-circle" src="..\assets\images\xs\avatar6.jpg" alt="">
+                            <div class="sl-content">
+                                <h5 class="m-b-0">General Surgery</h5>
+                                <small>Today <a href="javascript:void(0);">Grayson</a>.</small>
+                                <small>The standard chunk of Lorem Ipsum used since the 1500s is reproduced</small>
+                            </div>
+                        </div>
+                        <div class="sl-item">
+                            <img class="user rounded-circle" src="..\assets\images\xs\avatar7.jpg" alt="">
+                            <div class="sl-content">
+                                <h5 class="m-b-0">General Surgery</h5>
+                                <small>45min ago <a href="javascript:void(0);" class="text-info">Fidel Tonn</a>.</small>
+                                <small><strong>P:</strong> +264-625-2323</small>
+                                <small>The standard chunk of Lorem Ipsum used since the 1500s is reproduced used since the 1500s is reproduced</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>                -->
+        </div>
+    </div>
+
+            </div>
+        </section>
+                <!-- Scripts -->
+                <script src="{% static 'chairman\assets\bundles\libscripts.bundle.js' %}"></script>    
+        <script src="{% static 'chairman\assets\bundles\vendorscripts.bundle.js' %}"></script>
+
+        <script src="{% static 'chairman\assets\bundles\mainscripts.bundle.js' %}"></script>
+                                <script src="{% static 'chairman\assets\bundles\knob.bundle.js' %}"></script>
+    <script src="{% static 'chairman\assets\js\pages\charts\jquery-knob.js' %}"></script>
+				<!--Start of Tawk.to Script-->
+        <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/59f5afbbbb0c3f433d4c5c4c/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+        </script>
+        <!--End of Tawk.to Script-->
+    </body>
+</html>
+{% endblock %}
